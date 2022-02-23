@@ -1,0 +1,23 @@
+.head {
+  color: chartreuse;
+  display: flex;
+  justify-content: center;
+}
+
+form {
+  display: table;
+}
+
+.formArea {
+  display: table-row;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+}
+label,
+input {
+  display: table-cell;
+  margin-bottom: 10px;
+}
