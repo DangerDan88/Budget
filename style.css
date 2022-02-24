@@ -12,9 +12,13 @@ form {
   display: table-row;
 }
 
-.button {
+.buttonDiv {
   display: flex;
   justify-content: center;
+}
+
+button {
+  padding: 0.5rem;
 }
 label,
 input {
