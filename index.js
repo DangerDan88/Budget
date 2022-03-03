@@ -1,16 +1,14 @@
-// Add JS to get form info from submission of from and display on page
-// find a plain js way to get the form info to get stored into localStorage
-// run jquery document.ready in meantime so we can test this
-
+/// get the data to stick in local storage for now
+// style it up
 $(document).ready(function () {
   let button = document.getElementById("button");
   button.addEventListener("click", displayText);
   console.log("test");
   function displayText(event) {
     event.preventDefault();
+    let dollar = document.getElementById("dollar").value;
     let msg = document.getElementById("item").value;
-    console.log(msg);
+    document.getElementById("formData").innerHTML = msg + dollar;
   }
-
   displayText();
 });
