@@ -1,4 +1,4 @@
-/// get the data to stick in local storage for now
+/// got the items to set in local storage need to see if I can get them to stay on page reload
 // concatenate the items into list items when submitting
 // style it up
 $(document).ready(function () {
@@ -13,11 +13,10 @@ $(document).ready(function () {
       style: "currency",
       currency: "USD",
     });
+    localStorage.setItem("item", msg);
+    localStorage.setItem("amount", dollar);
     document.getElementById("formData").innerHTML =
       msg + "  " + numbUSD.format(dollar);
-
-    // localStorage.setItem("item", msg);
-    //  localStorage.setItem("amount", dollar.toString());
     //  document.getElementById("formData").innerHTML = Number(
     //    localStorage.getItem("amount")
     //  );
