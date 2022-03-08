@@ -3,6 +3,18 @@
 // see if this works with plain javascript take out the jquery
 
 $(document).ready(function () {
+  // so this did not take affect below first display function hoisting?
+
+  let testButton = document.getElementById("testButt");
+  testButton.addEventListener("click", getLocalData);
+  function getLocalData(event) {
+    event.preventDefault();
+    let user = localStorage.getItem("amount");
+    // document.getElementById("test").innerHTML = user;
+    console.log(user);
+  }
+  getLocalData();
+
   let button = document.getElementById("button");
   button.addEventListener("click", displayText);
 
@@ -18,8 +30,8 @@ $(document).ready(function () {
     let listItem = document.getElementById("formData");
     listItem.innerHTML +=
       "<li>" + msg + "  " + numbUSD.format(dollar) + "<li/>";
-    // localStorage.setItem("item", msg);
-    // localStorage.setItem("amount", numbUSD.format(dollar));
+    localStorage.setItem("item", msg);
+    localStorage.setItem("amount", numbUSD.format(dollar));
   }
   displayText();
 });

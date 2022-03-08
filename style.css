@@ -1,9 +1,12 @@
+html {
+  font-family: "Press Start 2P", cursive;
+}
+
 .head {
   color: white;
   background-color: #0a0c1a;
   display: flex;
   justify-content: start;
-  font-family: "Press Start 2P", cursive;
 }
 
 form {
@@ -27,7 +30,6 @@ ul {
   color: white;
   list-style: none;
   padding: 5px;
-  font-family: "Press Start 2P", cursive;
   font-size: large;
 }
 li {
@@ -67,4 +69,8 @@ input:focus {
 
 label {
   padding: 0.25rem;
+}
+
+#test {
+  color: white;
 }
