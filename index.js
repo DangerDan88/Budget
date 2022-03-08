@@ -3,21 +3,19 @@
 // see if this works with plain javascript take out the jquery
 
 $(document).ready(function () {
-  // so this did not take affect below first display function hoisting?
-
-  let testButton = document.getElementById("testButt");
-  testButton.addEventListener("click", getLocalData);
-  function getLocalData(event) {
-    event.preventDefault();
-    let user = localStorage.getItem("amount");
+  let storageArea = document.getElementById("storageArea");
+  storageArea.addEventListener("load", getLocalData);
+  // this function display the items already in local storage
+  function getLocalData() {
+    let storageItem = localStorage.getItem("amount");
     // document.getElementById("test").innerHTML = user;
-    console.log(user);
+    console.log(storageItem);
   }
   getLocalData();
 
   let button = document.getElementById("button");
   button.addEventListener("click", displayText);
-
+  // this function displays the form submission
   function displayText(event) {
     event.preventDefault();
     let msg = document.getElementById("item").value;
