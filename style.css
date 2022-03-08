@@ -3,12 +3,12 @@
   background-color: #0a0c1a;
   display: flex;
   justify-content: start;
-  font-family: "Pacifico", cursive;
+  font-family: "Press Start 2P", cursive;
 }
 
 form {
   display: table;
-  font-family: "Pacifico", cursive;
+  font-family: "Press Start 2P", cursive;
   color: white;
 }
 body {
@@ -27,6 +27,8 @@ ul {
   color: white;
   list-style: none;
   padding: 5px;
+  font-family: "Press Start 2P", cursive;
+  font-size: large;
 }
 li {
   padding: 5px;
@@ -44,6 +46,7 @@ button {
   border: 3px solid #0fff3f;
   border-radius: 20px;
   padding: 15px;
+  font-family: "Press Start 2P", cursive;
 }
 
 input {
