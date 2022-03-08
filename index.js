@@ -14,13 +14,12 @@ $(document).ready(function () {
       style: "currency",
       currency: "USD",
     });
-    let listItem = document.createElement("li");
-    let whatIsThis = (document.getElementById("formData").innerHTML =
-      listItem.appendChild(
-        document.createTextNode(msg + " " + numbUSD.format(dollar))
-      ));
-    console.log(whatIsThis);
+    // let listItem = document.createElement("li");
+    let listItem = document.getElementById("formData");
+    listItem.innerHTML +=
+      "<li>" + msg + "  " + numbUSD.format(dollar) + "<li/>";
     // why is this showing as an object text but in console its just a string?
+    // could I try setAttribute instead for the form?
   }
   displayText();
 });

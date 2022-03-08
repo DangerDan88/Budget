@@ -5,15 +5,15 @@
   justify-content: start;
   font-family: "Pacifico", cursive;
 }
-body {
-  background-color: #0a0c1a;
-}
+
 form {
   display: table;
   font-family: "Pacifico", cursive;
   color: white;
 }
-
+body {
+  background-color: #0a0c1a;
+}
 section {
   display: flex;
   justify-content: center;
@@ -21,6 +21,15 @@ section {
 }
 .formArea {
   display: table-row;
+}
+
+ul {
+  color: white;
+  list-style: none;
+  padding: 5px;
+}
+li {
+  padding: 5px;
 }
 
 .buttonDiv {
@@ -33,9 +42,8 @@ button {
   color: white;
   background: rgba(15, 255, 63, 0.05);
   border: 3px solid #0fff3f;
-  border-radius: 30px;
+  border-radius: 20px;
   padding: 15px;
-  text-align: left;
 }
 
 input {
