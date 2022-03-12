@@ -6,18 +6,18 @@ $(document).ready(function () {
   storageArea.addEventListener("load", getLocalData);
 
   // this function display the items already in local storage
-  // need to make local storage array and loop over to display all the items
   let localArray = [];
   // fix this function so it loads local list and then we loop over in another function to get the local data stored onto page
   function getLocalData() {
     let storageItem = localStorage.getItem("item");
     let itemPrice = localStorage.getItem("amount");
     // this grabs what is already in local storage and push it into the array
-    localArray = storageItem + itemPrice;
-    //document.getElementById("storageArea").innerHTML =
-    //  storageItem + "  " + itemPrice;
-
-    // console.log(storageItem + itemPrice);
+    localArray.push(storageItem + itemPrice);
+    document.getElementById("storageArea").innerHTML =
+      storageItem + "  " + itemPrice;
+    // this is pulling an array of the items so we need to loop them here to have the array syntax removed and leave just the strings
+    // or we can try looping it when we set the item which in turn would make it easier to grab the item from local storage and loop it
+    console.log(storageItem + itemPrice);
     console.log(localArray);
   }
   getLocalData();
@@ -43,12 +43,14 @@ $(document).ready(function () {
     localStorage.setItem("item", msg);
     localStorage.setItem("amount", numbUSD.format(dollar));
     // here we regrab from local storage to push to the array for local storage
-
-    testArray.push(localStorage.getItem("item", msg));
+    // this splits the array into the correct items so each array position has item and price in one so its easier to loop
+    testArray.push(
+      localStorage.getItem("item", msg) +
+        "  " +
+        localStorage.getItem("amount", numbUSD.format(dollar))
+    );
     localStorage.setItem("item", JSON.stringify(testArray));
-    testArray.push(localStorage.getItem("amount", numbUSD.format(dollar)));
     localStorage.setItem("amount", JSON.stringify(testArray));
-
     form.reset();
     console.log(testArray);
   }
