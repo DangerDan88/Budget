@@ -8,16 +8,16 @@ $(document).ready(function () {
   // this function display the items already in local storage
   // need to make local storage array and loop over to display all the items
   let localArray = [];
-
+  // fix this function so it loads local list and then we loop over in another function to get the local data stored onto page
   function getLocalData() {
     let storageItem = localStorage.getItem("item");
     let itemPrice = localStorage.getItem("amount");
     // this grabs what is already in local storage and push it into the array
-    localArray.push(storageItem + itemPrice);
-    document.getElementById("storageArea").innerHTML =
-      storageItem + "  " + itemPrice;
+    localArray = storageItem + itemPrice;
+    //document.getElementById("storageArea").innerHTML =
+    //  storageItem + "  " + itemPrice;
 
-    console.log(storageItem + itemPrice);
+    // console.log(storageItem + itemPrice);
     console.log(localArray);
   }
   getLocalData();
@@ -27,6 +27,7 @@ $(document).ready(function () {
   // this function displays the form submission
   function displayText(event) {
     event.preventDefault();
+    const form = document.getElementById("myForm");
     let msg = document.getElementById("item").value;
     let dollar = document.getElementById("dollar").value;
     let numbUSD = new Intl.NumberFormat("en-US", {
@@ -43,9 +44,10 @@ $(document).ready(function () {
     // here we regrab from local storage to push to the array for local storage
     let storageItem = localStorage.getItem("item");
     let itemPrice = localStorage.getItem("amount");
-    localArray.push(storageItem + itemPrice);
-
-    console.log(msg + numbUSD.format(dollar));
+    // maybe I just need to make the grabbing of the data an array then I push the data from my submission to array?
+    // localArray.push(storageItem + itemPrice);
+    form.reset();
+    console.log(storageItem + itemPrice);
   }
   displayText();
 });
