@@ -24,6 +24,7 @@ $(document).ready(function () {
 
   let button = document.getElementById("button");
   button.addEventListener("click", displayText);
+  let testArray = [];
   // this function displays the form submission
   function displayText(event) {
     event.preventDefault();
@@ -42,12 +43,14 @@ $(document).ready(function () {
     localStorage.setItem("item", msg);
     localStorage.setItem("amount", numbUSD.format(dollar));
     // here we regrab from local storage to push to the array for local storage
-    let storageItem = localStorage.getItem("item");
-    let itemPrice = localStorage.getItem("amount");
-    // maybe I just need to make the grabbing of the data an array then I push the data from my submission to array?
-    // localArray.push(storageItem + itemPrice);
+
+    testArray.push(localStorage.getItem("item", msg));
+    localStorage.setItem("item", JSON.stringify(testArray));
+    testArray.push(localStorage.getItem("amount", numbUSD.format(dollar)));
+    localStorage.setItem("amount", JSON.stringify(testArray));
+
     form.reset();
-    console.log(storageItem + itemPrice);
+    console.log(testArray);
   }
   displayText();
 });
