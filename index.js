@@ -7,18 +7,21 @@ $(document).ready(function () {
 
   // this function display the items already in local storage
   let localArray = [];
-  // fix this function so it loads local list and then we loop over in another function to get the local data stored onto page
+
   function getLocalData() {
     let storageItem = localStorage.getItem("item");
     let itemPrice = localStorage.getItem("amount");
     // this grabs what is already in local storage and push it into the array
     localArray.push(storageItem + itemPrice);
+    for (let i = 0; i < localArray.length; i++) {
+      console.log(localArray[i]);
+    }
     document.getElementById("storageArea").innerHTML =
       storageItem + "  " + itemPrice;
     // this is pulling an array of the items so we need to loop them here to have the array syntax removed and leave just the strings
     // or we can try looping it when we set the item which in turn would make it easier to grab the item from local storage and loop it
-    console.log(storageItem + itemPrice);
-    console.log(localArray);
+    // console.log(storageItem + itemPrice);
+    // console.log(localArray);
   }
   getLocalData();
 
