@@ -2,36 +2,16 @@
 // make an array to store the local storage items then I can loop them
 // need to make function to push to array of local data so I can loop all the items and display them on page
 $(document).ready(function () {
-  let storageArea = document.getElementById("storageArea");
-  storageArea.addEventListener("load", getLocalData);
-
-  // this function display the items already in local storage
-  let localArray = [];
-
-  function getLocalData() {
-    let storageItem = localStorage.getItem("item");
-    let itemPrice = localStorage.getItem("amount");
-    // this grabs what is already in local storage and push it into the array
-    localArray.push(storageItem + itemPrice);
-    for (let i = 0; i < localArray.length; i++) {
-      console.log(localArray[i]);
-    }
-    document.getElementById("storageArea").innerHTML =
-      storageItem + "  " + itemPrice;
-    // this is pulling an array of the items so we need to loop them here to have the array syntax removed and leave just the strings
-    // or we can try looping it when we set the item which in turn would make it easier to grab the item from local storage and loop it
-    // console.log(storageItem + itemPrice);
-    // console.log(localArray);
-  }
-  getLocalData();
-
   let button = document.getElementById("button");
+  let totalArea = document.getElementById("totalArea");
   button.addEventListener("click", displayText);
-  let testArray = [];
+  let localStorageArray = [];
+  let totalArray = 40;
   // this function displays the form submission
   function displayText(event) {
     event.preventDefault();
     const form = document.getElementById("myForm");
+    let listItem = document.getElementById("formData");
     let msg = document.getElementById("item").value;
     let dollar = document.getElementById("dollar").value;
     let numbUSD = new Intl.NumberFormat("en-US", {
@@ -39,23 +19,30 @@ $(document).ready(function () {
       currency: "USD",
     });
 
-    let listItem = document.getElementById("formData");
     listItem.innerHTML +=
       "<li>" + msg + "  " + numbUSD.format(dollar) + "<li/>";
+    // figure out how to add a total to number on submit so it will add total money for all items
+
     // this sets item in local storage
     localStorage.setItem("item", msg);
     localStorage.setItem("amount", numbUSD.format(dollar));
     // here we regrab from local storage to push to the array for local storage
     // this splits the array into the correct items so each array position has item and price in one so its easier to loop
-    testArray.push(
+    localStorageArray.push(
       localStorage.getItem("item", msg) +
         "  " +
         localStorage.getItem("amount", numbUSD.format(dollar))
     );
-    localStorage.setItem("item", JSON.stringify(testArray));
-    localStorage.setItem("amount", JSON.stringify(testArray));
+    localStorage.setItem("item", JSON.stringify(localStorageArray));
+    localStorage.setItem("amount", JSON.stringify(localStorageArray));
+    // need to add values then attach $ format to get it to add correct
+    if (totalArray.length === 0) {
+      totalArea.innerHTML = parseInt(dollar) + totalArray;
+    } else {
+      totalArea.innerHTML = parseInt(dollar) + totalArray;
+    }
     form.reset();
-    console.log(testArray);
+    console.log(localStorageArray);
   }
   displayText();
 });
