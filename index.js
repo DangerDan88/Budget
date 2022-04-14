@@ -35,12 +35,7 @@ $(document).ready(function () {
     );
     localStorage.setItem("item", JSON.stringify(localStorageArray));
     localStorage.setItem("amount", JSON.stringify(localStorageArray));
-    // need to add values then attach $ format to get it to add correct
-    if (totalArray.length === 0) {
-      totalArea.innerHTML = parseInt(dollar) + totalArray;
-    } else {
-      totalArea.innerHTML = parseInt(dollar) + totalArray;
-    }
+
     form.reset();
     console.log(localStorageArray);
   }

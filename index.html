@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 <head>
   <link rel="stylesheet" href="style.css" />
-  <script
-    src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-    crossorigin="anonymous"
-  ></script>
-  <script src="index.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -17,28 +11,61 @@
 <html>
   <body>
     <header class="head"><h1>Budget Man</h1></header>
+
+    <div class="info">
+      <ul id="bits">
+        <li>loading items</li>
+      </ul>
+    </div>
+
     <section>
-      <form class="formArea" id="myForm">
-        <div class="formArea">
-          <label for="name">Enter item purchased: </label>
-          <input type="text" name="item" id="item" />
-        </div>
-        <div class="formArea">
-          <label for="name">Enter your item cost: </label>
-          <input type="text" name="dollar" id="dollar" />
-        </div>
-        <div class="buttonDiv">
-          <button class="button" type="submit" value="submit" id="button">
-            Submit
-          </button>
-        </div>
+      <form class="formData">
+        <label for="name">Enter item purchased: </label>
+        <input type="text" name="item" id="item" />
+        <label for="name">Enter your item cost: </label>
+        <input type="text" name="dollar" id="dollar" />
+        <input class="button" type="submit" value="+ Add Item" />
       </form>
     </section>
-    <div class="info">
-      <ul id="formData"></ul>
-    </div>
     <div>
-      <ul id="totalArea"></ul>
+      <ul class="bits" id="totalArea"></ul>
     </div>
+    <script>
+      const addItems = document.querySelector(".formData");
+      const itemsList = document.querySelector(".bits");
+      const items = [];
+      let numbUSD = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+      });
+      function addItem(e) {
+        e.preventDefault();
+        const text = this.querySelector("[name=item]").value;
+        const price = this.querySelector("[name=dollar]").value;
+
+        const item = {
+          text,
+          price: numbUSD.format(price),
+          done: false,
+        };
+        items.push(item);
+        populateList(items, itemsList);
+        this.reset();
+      }
+      // this is null because the element is not created in time I think its the (this.query) need to look into this
+      function populateList(bits = [], bitsList) {
+        bitsList.innerHTML = bits
+          .map((bit, i) => {
+            return `
+          <li>
+            <label for="">${bit.text + " " + bit.price}</label>
+           </li>
+          
+          `;
+          })
+          .join("");
+      }
+      addItems.addEventListener("submit", addItem);
+    </script>
   </body>
 </html>
