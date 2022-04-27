@@ -39,7 +39,7 @@ li {
   justify-content: center;
 }
 
-button {
+.button {
   margin: 37px auto 0;
   color: white;
   background: rgba(15, 255, 63, 0.05);
@@ -64,3 +64,19 @@ input {
 label {
   padding: 0.25rem;
 }
+
+
+.bits input {
+  display: none;
+}
+
+
+.bits input + label:before {
+  content: 'X';
+  margin-right: 10px;
+}
+
+.bits input:checked + label:before {
+  content: '^';
+}
+

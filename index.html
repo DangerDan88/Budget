@@ -14,17 +14,21 @@
 
     <div class="info">
       <ul id="bits">
-        <li>loading items</li>
+        <li>loading items...</li>
       </ul>
     </div>
 
     <section>
       <form class="formData">
-        <label for="name">Enter item purchased: </label>
-        <input type="text" name="item" id="item" />
-        <label for="name">Enter your item cost: </label>
-        <input type="text" name="dollar" id="dollar" />
-        <input class="button" type="submit" value="+ Add Item" />
+        <div class="formArea">
+          <label for="name">Enter item purchased: </label>
+          <input type="text" name="item" id="item" />
+        </div>
+        <div class="formArea">
+          <label for="name">Enter your item cost: </label>
+          <input type="text" name="dollar" id="dollar" />
+        </div>
+        <input class="button" type="submit" value="Add Item" />
       </form>
     </section>
     <div>
@@ -33,7 +37,8 @@
     <script>
       const addItems = document.querySelector(".formData");
       const itemsList = document.querySelector(".bits");
-      const items = [];
+      // items are not ready on page load so here we look at storage or load empty array, this will persist the data after reload
+      const items = JSON.parse(localStorage.getItem("items")) || [];
       let numbUSD = new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD",
@@ -50,15 +55,20 @@
         };
         items.push(item);
         populateList(items, itemsList);
+        /// setting items in localStorage need to stringify as localStorage only accepts strings
+        localStorage.setItem("items", JSON.stringify(items));
         this.reset();
       }
-      // this is null because the element is not created in time I think its the (this.query) need to look into this
+      // need to fix check box UI for removing items from list
       function populateList(bits = [], bitsList) {
         bitsList.innerHTML = bits
           .map((bit, i) => {
             return `
           <li>
-            <label for="">${bit.text + " " + bit.price}</label>
+            <input type="checkbox" data-index=${i} id="item${i}" ${
+              bit.done ? "checked" : null
+            } />
+            <label for="item${i}">${bit.text + " " + bit.price}</label>
            </li>
           
           `;
@@ -66,6 +76,7 @@
           .join("");
       }
       addItems.addEventListener("submit", addItem);
+      populateList(items, itemsList);
     </script>
   </body>
 </html>
