@@ -30,6 +30,9 @@
         </div>
         <input class="button" type="submit" value="Add Item" />
       </form>
+      <div class="total">
+        <input class="button" type="submit" value="Add total" />
+      </div>
     </section>
     <div>
       <ul class="bits" id="totalArea"></ul>
@@ -38,6 +41,7 @@
       // try and make the money add up and figure out why emoji is not working
       const addItems = document.querySelector(".formData");
       const itemsList = document.querySelector(".bits");
+      const total = document.querySelector(".total");
       // items are not ready on page load so here we look at storage or load empty array, this will persist the data after reload
       const items = JSON.parse(localStorage.getItem("items")) || [];
       let numbUSD = new Intl.NumberFormat("en-US", {
@@ -51,11 +55,11 @@
 
         const item = {
           text,
-          price: numbUSD.format(price),
+          price,
           done: false,
         };
         // this pull a regular number but the the add money function price pulls the actual money value?
-        console.log(price);
+        console.log(items);
         items.push(item);
         populateList(items, itemsList);
         /// setting items in localStorage need to stringify as localStorage only accepts strings
@@ -73,18 +77,20 @@
             } />
             <label for="item${i}">${bit.text + " " + bit.price}</label>
            </li>
-          
+
           `;
           })
           .join("");
       }
+
       // got the money to loop need to see if we can unformat it then add and reformat or just add the money?
+      // trying without money format to see possibly a for each loop?
       function addMoney() {
         for (let i = 0; i < items.length; i++) {
           console.log(items[i].price);
         }
       }
-      addMoney();
+
       function toggleDone(e) {
         if (!e.target.matches("input")) return; // skip this unless its an input we want to target the input not the other elements
         const el = e.target;
@@ -96,6 +102,8 @@
 
       addItems.addEventListener("submit", addItem);
       itemsList.addEventListener("click", toggleDone);
+      // this button will trigger function to add money then reformat before displaying it to page
+      total.addEventListener("click", addMoney);
 
       populateList(items, itemsList);
       // need to listen for click on bits section as this is actually there on page load unlike the list items. So pass to parent they send to list item childs not rendered yet
