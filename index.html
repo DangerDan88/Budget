@@ -68,15 +68,25 @@
       }
 
       // got the money to loop need to see if we can unformat it then add and reformat or just add the money?
-      // trying without money format to see possibly a for each loop? got for each in and looped over the object now need to see if we can deconstruct the object to get only price to add money?
+      // trying without money format to see possibly a for each loop? got for each in and looped over the object now need to see if we can deconstruct the object to get only price to add money? then looped over the array of objects and only got price out now just need to add them and display
       function addMoney() {
-        items.forEach((item) => {
-          for (let key in item) {
-            console.log(`${key} : ${item[key]}`);
+        var j = 0;
+        var carNames = [];
+        for (var i = 0; i < items.length; i++) {
+          var nameOfCar = items[i];
+          if (nameOfCar.hasOwnProperty("price")) {
+            carNames[j] = nameOfCar["price"];
+            j++;
           }
-        });
-      }
+        }
 
+        console.log(carNames);
+      }
+      // items.forEach((item) => {
+      //    for (let key in item) {
+      //     console.log(`${key} : ${item[key]}`);
+      //    }
+      //  });
       // need to fix check box UI for removing items from list
       function populateList(bits = [], bitsList) {
         bitsList.innerHTML = bits
