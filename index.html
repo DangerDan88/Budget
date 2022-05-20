@@ -38,16 +38,17 @@
       <ul class="bits" id="totalArea"></ul>
     </div>
     <script>
-      // try and make the money add up and figure out why emoji is not working
       const addItems = document.querySelector(".formData");
       const itemsList = document.querySelector(".bits");
       const total = document.querySelector(".total");
+      const moneyArray = [];
       // items are not ready on page load so here we look at storage or load empty array, this will persist the data after reload
       const items = JSON.parse(localStorage.getItem("items")) || [];
       let numbUSD = new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD",
       });
+
       function addItem(e) {
         e.preventDefault();
         const text = this.querySelector("[name=item]").value;
@@ -58,10 +59,15 @@
           price,
           done: false,
         };
+
         // this pull a regular number but the the add money function price pulls the actual money value?
-        //console.log(items);
         items.push(item);
+        let purchase = item.price;
+        moneyArray.push(purchase);
+        // seems to work with normal array and not items one figure thiss out
+        console.log(purchase);
         populateList(items, itemsList);
+        // console.log(purchase);
         /// setting items in localStorage need to stringify as localStorage only accepts strings
         localStorage.setItem("items", JSON.stringify(items));
         this.reset();
@@ -69,19 +75,7 @@
 
       // got the money to loop need to see if we can unformat it then add and reformat or just add the money?
       // trying without money format to see possibly a for each loop? got for each in and looped over the object now need to see if we can deconstruct the object to get only price to add money? then looped over the array of objects and only got price out now just need to add them and display
-      function addMoney() {
-        var j = 0;
-        var priceList = [];
-        for (var i = 0; i < items.length; i++) {
-          var amount = items[i];
-          if (amount.hasOwnProperty("price")) {
-            priceList[j] = amount["price"];
-            j++;
-          }
-        }
-
-        console.log(priceList);
-      }
+      function addMoney() {}
 
       // need to fix check box UI for removing items from list
       function populateList(bits = [], bitsList) {

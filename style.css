@@ -1,10 +1,10 @@
 html {
   font-family: "Press Start 2P", cursive;
-  background-color: #0a0c1a;
+  background-color: #242582;
 }
 
 .head {
-  color: white;
+  color: #F64C72;
   display: flex;
   justify-content: start;
 }
@@ -43,7 +43,7 @@ li {
   margin: 37px auto 0;
   color: white;
   background: rgba(15, 255, 63, 0.05);
-  border: 3px solid #0fff3f;
+  border: 3px solid #F64C72;
   border-radius: 20px;
   padding: 15px;
   font-family: "Press Start 2P", cursive;
@@ -53,7 +53,7 @@ input {
   display: table-cell;
   margin-bottom: 10px;
   box-sizing: border-box;
-  border: 3px solid #55fa58;
+  border: 3px solid #F64C72;
 }
 
 .info {
@@ -72,13 +72,16 @@ label {
 
 
 .bits input + label:before {
-  content: 'X';
+  content: 💰 ;
   margin-right: 10px;
 }
 
 .bits input:checked + label:before {
-  content: '//';
+  content: '/';
 }
+
+
+
 
 
 
