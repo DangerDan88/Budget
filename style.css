@@ -72,12 +72,12 @@ label {
 
 
 .bits input + label:before {
-  content: 💰 ;
+  content: "X" ;
   margin-right: 10px;
 }
 
 .bits input:checked + label:before {
-  content: '/';
+  content: '$';
 }
 
 

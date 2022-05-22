@@ -11,13 +11,11 @@
 <html>
   <body>
     <header class="head"><h1>Budget Man</h1></header>
-
     <div class="info">
       <ul id="bits">
         <li>loading items...</li>
       </ul>
     </div>
-
     <section>
       <form class="formData">
         <div class="formArea">
@@ -30,9 +28,6 @@
         </div>
         <input class="button" type="submit" value="Add Item" />
       </form>
-      <div class="total">
-        <input class="button" type="submit" value="Add total" />
-      </div>
     </section>
     <div>
       <ul class="bits" id="totalArea"></ul>
@@ -56,7 +51,7 @@
 
         const item = {
           text,
-          price,
+          price: numbUSD.format(price),
           done: false,
         };
 
@@ -73,8 +68,7 @@
         this.reset();
       }
 
-      // got the money to loop need to see if we can unformat it then add and reformat or just add the money?
-      // trying without money format to see possibly a for each loop? got for each in and looped over the object now need to see if we can deconstruct the object to get only price to add money? then looped over the array of objects and only got price out now just need to add them and display
+      // need to figure out how to add the total off all the money values we add
       function addMoney() {}
 
       // need to fix check box UI for removing items from list
