@@ -28,6 +28,9 @@
         </div>
         <input class="button" type="submit" value="Add Item" />
       </form>
+      <div class="total">
+        <input class="button" type="submit" value="Add total" />
+      </div>
     </section>
     <div>
       <ul class="bits" id="totalArea"></ul>
@@ -51,7 +54,7 @@
 
         const item = {
           text,
-          price: numbUSD.format(price),
+          price,
           done: false,
         };
 
@@ -59,31 +62,38 @@
         items.push(item);
         let purchase = item.price;
         moneyArray.push(purchase);
+        console.log(moneyArray);
         // seems to work with normal array and not items one figure thiss out
-        console.log(purchase);
         populateList(items, itemsList);
         // console.log(purchase);
         /// setting items in localStorage need to stringify as localStorage only accepts strings
         localStorage.setItem("items", JSON.stringify(items));
         this.reset();
       }
-
-      // need to figure out how to add the total off all the money values we add
-      function addMoney() {}
+      // finally got the adding function down needed to convert string to number need to clean it up and reformat to money when we display to page
+      function addMoney() {
+        // let top = ["1", "2"];
+        let newTop = [];
+        let sum = 0;
+        for (let i = 0; i < moneyArray.length; i++) {
+          sum += parseInt(moneyArray[i]);
+        }
+        console.log(sum);
+      }
 
       // need to fix check box UI for removing items from list
       function populateList(bits = [], bitsList) {
         bitsList.innerHTML = bits
           .map((bit, i) => {
             return `
-          <li>
-            <input type="checkbox" data-index=${i} id="item${i}" ${
+                <li>
+                  <input type="checkbox" data-index=${i} id="item${i}" ${
               bit.done ? "checked" : null
             } />
-            <label for="item${i}">${bit.text + " " + bit.price}</label>
-           </li>
+                  <label for="item${i}">${bit.text + " " + bit.price}</label>
+                 </li>
 
-          `;
+                `;
           })
           .join("");
       }
