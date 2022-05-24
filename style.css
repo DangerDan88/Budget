@@ -80,7 +80,10 @@ label {
   content: '$';
 }
 
-
+.howMuch {
+  color: #F64C72;
+  background-color: #242582;
+}
 
 
 

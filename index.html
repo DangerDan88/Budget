@@ -35,6 +35,7 @@
     <div>
       <ul class="bits" id="totalArea"></ul>
     </div>
+    <div class="howMuch"></div>
     <script>
       const addItems = document.querySelector(".formData");
       const itemsList = document.querySelector(".bits");
@@ -63,14 +64,14 @@
         let purchase = item.price;
         moneyArray.push(purchase);
         console.log(moneyArray);
-        // seems to work with normal array and not items one figure thiss out
+        // seems to work with normal array and not items one figure this out
         populateList(items, itemsList);
         // console.log(purchase);
         /// setting items in localStorage need to stringify as localStorage only accepts strings
         localStorage.setItem("items", JSON.stringify(items));
         this.reset();
       }
-      // finally got the adding function down needed to convert string to number need to clean it up and reformat to money when we display to page
+      // need to figure out do we account for local storage price values? May need to deconstruct it to get price and add it to this function
       function addMoney() {
         // let top = ["1", "2"];
         let newTop = [];
@@ -78,7 +79,8 @@
         for (let i = 0; i < moneyArray.length; i++) {
           sum += parseInt(moneyArray[i]);
         }
-        console.log(sum);
+        let budgetTotal = document.querySelector(".howMuch");
+        budgetTotal.innerHTML = numbUSD.format(sum);
       }
 
       // need to fix check box UI for removing items from list
