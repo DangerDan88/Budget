@@ -34,7 +34,7 @@ li {
   padding: 5px;
 }
 
-.buttonDiv {
+.buttonDiv,.total {
   display: flex;
   justify-content: center;
 }

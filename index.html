@@ -28,10 +28,10 @@
         </div>
         <input class="button" type="submit" value="Add Item" />
       </form>
-      <div class="total">
-        <input class="button" type="submit" value="Add total" />
-      </div>
     </section>
+    <div class="total">
+      <input class="button" type="submit" value="Add total" />
+    </div>
     <div>
       <ul class="bits" id="totalArea"></ul>
     </div>
@@ -72,6 +72,7 @@
         this.reset();
       }
       // need to figure out do we account for local storage price values? May need to deconstruct it to get price and add it to this function
+      // add hover affect to buttons to know when on it
       function addMoney() {
         // let top = ["1", "2"];
         let newTop = [];
@@ -92,7 +93,9 @@
                   <input type="checkbox" data-index=${i} id="item${i}" ${
               bit.done ? "checked" : null
             } />
-                  <label for="item${i}">${bit.text + " " + bit.price}</label>
+                  <label for="item${i}">${
+              bit.text + " " + "$" + bit.price
+            }</label>
                  </li>
 
                 `;
