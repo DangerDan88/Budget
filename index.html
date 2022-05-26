@@ -31,6 +31,9 @@
       <div class="total">
         <input class="button totalButton" type="submit" value="Add total" />
       </div>
+      <div class="clear">
+        <input class="button" type="submit" value="Clear list" />
+      </div>
     </section>
 
     <div>
@@ -41,6 +44,7 @@
       const addItems = document.querySelector(".formData");
       const itemsList = document.querySelector(".bits");
       const total = document.querySelector(".total");
+      const clear = document.querySelector(".clear");
       const moneyArray = [];
       // items are not ready on page load so here we look at storage or load empty array, this will persist the data after reload
       const items = JSON.parse(localStorage.getItem("items")) || [];
@@ -65,9 +69,7 @@
         let purchase = item.price;
         moneyArray.push(purchase);
         console.log(moneyArray);
-        // seems to work with normal array and not items one figure this out
         populateList(items, itemsList);
-        // console.log(purchase);
         /// setting items in localStorage need to stringify as localStorage only accepts strings
         localStorage.setItem("items", JSON.stringify(items));
         this.reset();
@@ -112,12 +114,19 @@
         localStorage.setItem("items", JSON.stringify(items));
         populateList(items, itemsList);
       }
+      // figure out local storage clear function then we should be okay possibly grab from local storage for totally money rn its only whats on current list
+      function clearLocal() {
+        //localStorage.getItem(items);
+        window.localStorage.clear();
+        location.reload();
+        console.log("here");
+      }
 
       addItems.addEventListener("submit", addItem);
       itemsList.addEventListener("click", toggleDone);
       // this button will trigger function to add money then reformat before displaying it to page
       total.addEventListener("click", addMoney);
-
+      clear.addEventListener("click", clearLocal);
       populateList(items, itemsList);
       // need to listen for click on bits section as this is actually there on page load unlike the list items. So pass to parent they send to list item childs not rendered yet
     </script>
