@@ -68,7 +68,6 @@
         items.push(item);
         let purchase = item.price;
         moneyArray.push(purchase);
-        console.log(moneyArray);
         populateList(items, itemsList);
         /// setting items in localStorage need to stringify as localStorage only accepts strings
         localStorage.setItem("items", JSON.stringify(items));
@@ -78,13 +77,19 @@
       // add hover affect to buttons to know when on it
       function addMoney() {
         // let top = ["1", "2"];
+        let localMoney = JSON.parse(localStorage.getItem("items"));
         let newTop = [];
-        let sum = 0;
+        let sum = [];
+        // this loop is grabbing the numbers we need just need to add to function already somehow
+        for (let i = 0; i < localMoney.length; i++) {
+          console.log(parseInt(localMoney[i].price));
+        }
         for (let i = 0; i < moneyArray.length; i++) {
           sum += parseInt(moneyArray[i]);
         }
         let budgetTotal = document.querySelector(".howMuch");
         budgetTotal.innerHTML = numbUSD.format(sum);
+        // this pulls an array of objects need to loop the array and grab price then add them
       }
 
       // need to fix check box UI for removing items from list
