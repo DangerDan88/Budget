@@ -76,23 +76,23 @@
       // need to figure out do we account for local storage price values? May need to deconstruct it to get price and add it to this function
       // add hover affect to buttons to know when on it
       function addMoney() {
-        // let top = ["1", "2"];
         let localMoney = JSON.parse(localStorage.getItem("items"));
         let newTop = [];
-        let sum = [];
-        // this loop is grabbing the numbers we need just need to add to function already somehow
-        for (let i = 0; i < localMoney.length; i++) {
-          console.log(parseInt(localMoney[i].price));
-        }
+        // if sum is an array and not 0 it will not add correctly and append the string
+        let sum = 0;
+        // this loop is grabbing the numbers we need just need to add to function already somehow maybe I need a function to get the data then add that to the add money function
+        // for (let i = 0; i < localMoney.length; i++) {
+        //   console.log(parseInt(localMoney[i].price));
+        // }
         for (let i = 0; i < moneyArray.length; i++) {
           sum += parseInt(moneyArray[i]);
         }
+        console.log(localMoney);
         let budgetTotal = document.querySelector(".howMuch");
-        budgetTotal.innerHTML = numbUSD.format(sum);
-        // this pulls an array of objects need to loop the array and grab price then add them
+        budgetTotal.innerHTML = "Total " + numbUSD.format(sum);
       }
 
-      // need to fix check box UI for removing items from list
+      // need to fix check box UI for removing items from list TODO
       function populateList(bits = [], bitsList) {
         bitsList.innerHTML = bits
           .map((bit, i) => {

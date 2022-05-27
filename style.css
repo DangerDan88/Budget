@@ -49,6 +49,10 @@ li {
   font-family: "Press Start 2P", cursive;
 }
 
+.button:hover {
+  border: 3px solid white;
+}
+
 input {
   display: table-cell;
   margin-bottom: 10px;
