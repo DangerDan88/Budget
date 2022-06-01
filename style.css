@@ -65,7 +65,7 @@ input {
   justify-content: center;
 }
 
-label {
+label input:checked {
   padding: 0.25rem;
 }
 
@@ -81,13 +81,16 @@ label {
 }
 
 .bits input:checked + label:before {
-  content: '$';
+  margin-right: 10px;
+  visibility: hidden;
 }
 
 .howMuch {
   color: #F64C72;
   background-color: #242582;
 }
+
+
 
 
 

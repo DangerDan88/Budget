@@ -114,11 +114,19 @@
       function toggleDone(e) {
         if (!e.target.matches("input")) return; // skip this unless its an input we want to target the input not the other elements
         const el = e.target;
+        //let input = e.target;
         const index = el.dataset.index;
         items[index].done = !items[index].done;
         localStorage.setItem("items", JSON.stringify(items));
         populateList(items, itemsList);
+        // got the money sign or check box to be removed need the label of item to be removed as well possibly make on click handler so we know which item we click on
+        if (!e.target.matches("checked")) {
+          el.style.visibility = "hidden";
+          console.log(el);
+          // console.log("clicked");
+        }
       }
+
       // figure out local storage clear function then we should be okay possibly grab from local storage for totally money rn its only whats on current list
       function clearLocal() {
         //localStorage.getItem(items);
@@ -132,8 +140,8 @@
       // this button will trigger function to add money then reformat before displaying it to page
       total.addEventListener("click", addMoney);
       clear.addEventListener("click", clearLocal);
-      populateList(items, itemsList);
       // need to listen for click on bits section as this is actually there on page load unlike the list items. So pass to parent they send to list item childs not rendered yet
+      populateList(items, itemsList);
     </script>
   </body>
 </html>
