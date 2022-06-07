@@ -45,6 +45,7 @@
       const itemsList = document.querySelector(".bits");
       const total = document.querySelector(".total");
       const clear = document.querySelector(".clear");
+      let i = 2;
       const moneyArray = [];
       // items are not ready on page load so here we look at storage or load empty array, this will persist the data after reload
       const items = JSON.parse(localStorage.getItem("items")) || [];
@@ -74,20 +75,15 @@
         this.reset();
       }
       // need to figure out do we account for local storage price values? May need to deconstruct it to get price and add it to this function
-      // add hover affect to buttons to know when on it
       function addMoney() {
         let localMoney = JSON.parse(localStorage.getItem("items"));
+        console.log(localMoney);
         let newTop = [];
         // if sum is an array and not 0 it will not add correctly and append the string
         let sum = 0;
-        // this loop is grabbing the numbers we need just need to add to function already somehow maybe I need a function to get the data then add that to the add money function
-        // for (let i = 0; i < localMoney.length; i++) {
-        //   console.log(parseInt(localMoney[i].price));
-        // }
         for (let i = 0; i < moneyArray.length; i++) {
           sum += parseInt(moneyArray[i]);
         }
-        console.log(localMoney);
         let budgetTotal = document.querySelector(".howMuch");
         budgetTotal.innerHTML = "Total " + numbUSD.format(sum);
       }
@@ -98,7 +94,7 @@
           .map((bit, i) => {
             return `
                 <li>
-                  <input type="checkbox" data-index=${i} id="item${i}" ${
+                  <input class="checkbox type="checkbox" data-index=${i} id="item${i}" ${
               bit.done ? "checked" : null
             } />
                   <label for="item${i}">${
@@ -114,16 +110,13 @@
       function toggleDone(e) {
         if (!e.target.matches("input")) return; // skip this unless its an input we want to target the input not the other elements
         const el = e.target;
-        //let input = e.target;
         const index = el.dataset.index;
         items[index].done = !items[index].done;
         localStorage.setItem("items", JSON.stringify(items));
         populateList(items, itemsList);
         // got the money sign or check box to be removed need the label of item to be removed as well possibly make on click handler so we know which item we click on
         if (!e.target.matches("checked")) {
-          el.style.visibility = "hidden";
           console.log(el);
-          // console.log("clicked");
         }
       }
 
